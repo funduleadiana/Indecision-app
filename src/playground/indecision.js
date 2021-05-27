@@ -2,7 +2,7 @@ const root = document.getElementById('root');
 const app = {
     title: 'Indecision App',
     subtitle: 'Put your life in the hands of a computer',
-    options: [];
+    options: ['play', 'eat', 'go out with firends'],
 }
 
 
@@ -33,8 +33,11 @@ const render = () => {
             <p>{app.options.length}</p>
             <button onClick={removeAll}>Remove all</button>
             <ol>
-                <li>Item one</li>
-                <li>Item 10</li>
+                {
+                    app.options.map((option, i)=>{
+                      return  <li key={i}>Item: {option}</li>
+                    })
+                }
             </ol>
             <form onSubmit={onFormSubmit}>
                 <input type="text" name="option"></input>
