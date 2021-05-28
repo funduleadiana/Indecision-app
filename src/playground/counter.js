@@ -33,6 +33,24 @@ class Counter extends React.Component{
                 count: 0
             }
         })
+        // will continue to increment due to asyncronous behavior:
+        /*
+            //this.setState({count: 0});
+            //this.setState({count: this.state.count +1})
+            ---The above will continue to increment instead of setting it to the value of 1 when called this is due to the func being async
+
+            ///----------The below will reset count to 1, no matter the current value---------
+            //this.setState(()=>{
+                return{
+                    count: 0
+                }
+            });
+            //this.setState((prevState)=> {
+                return{
+                    count: prevState.count +1
+                }
+            })
+        */
     }
     render(){
         return(
