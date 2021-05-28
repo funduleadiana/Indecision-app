@@ -1,17 +1,23 @@
 //var template = <p>This is JSX from app.js!</p>;
 class IndecisionApp extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            options: ['Thing One', 'Thing Two', 'Thing five']
+        };
+    }
     render(){
         const title = 'Indecision';
         const subtitle = 'Put your life in the hands of your computer';
-        const options = ['Thing One', 'Thing Two', 'Thing five']
+    
         return(
             <div>
                 <Header title={title} subtitle={subtitle}/>
                 <Action/>
-                <Options options={options}/>
+                <Options options={this.state.options}/>
                 <AddOption />
             </div>
-        )
+        );
     }
 }
 
