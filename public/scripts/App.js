@@ -46,6 +46,9 @@ var Counter = function (_React$Component) {
     }, {
         key: 'handleResetCount',
         value: function handleResetCount() {
+            // works the same as :
+            // this.setState({count: 0}) - but this is not recommended
+            //this.setState is async function
             this.setState(function () {
                 return {
                     count: 0
