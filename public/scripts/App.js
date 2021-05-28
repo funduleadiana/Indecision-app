@@ -45,7 +45,13 @@ var Counter = function (_React$Component) {
         }
     }, {
         key: 'handleResetCount',
-        value: function handleResetCount() {}
+        value: function handleResetCount() {
+            this.setState(function () {
+                return {
+                    count: 0
+                };
+            });
+        }
     }, {
         key: 'render',
         value: function render() {
