@@ -6,7 +6,7 @@ class VisibilityToggle extends React.Component{
         super(props);
         this.toggleVisibility = this.toggleVisibility.bind(this);
         this.state={
-            visibility: true
+            visibility: false
         }
     }
     toggleVisibility(){
@@ -21,8 +21,9 @@ class VisibilityToggle extends React.Component{
         return(
             <div>
                 <h1>Visibility Toggle</h1>
-                <button onClick={this.toggleVisibility}>{this.state.visibility? 'Show Details' : 'Hide Details'}</button>
-                <div>{!this.state.visibility? 'These are some details press button to hide': ''}</div>
+                <button onClick={this.toggleVisibility}>{this.state.visibility? 'Hide Details' : 'Show Details'}</button>
+                <div>{this.state.visibility? 'These are some details press button to hide': ''}</div>
+            
             </div>
         )
     }
@@ -31,7 +32,8 @@ class VisibilityToggle extends React.Component{
 ReactDOM.render(<VisibilityToggle/>, root)
 
 
-
+// we can also use the former expression:
+// {this.state.visibility && (<div><p>These are some detials</p></div>s)}
 
 
 

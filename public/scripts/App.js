@@ -20,7 +20,7 @@ var VisibilityToggle = function (_React$Component) {
 
         _this.toggleVisibility = _this.toggleVisibility.bind(_this);
         _this.state = {
-            visibility: true
+            visibility: false
         };
         return _this;
     }
@@ -48,12 +48,12 @@ var VisibilityToggle = function (_React$Component) {
                 React.createElement(
                     'button',
                     { onClick: this.toggleVisibility },
-                    this.state.visibility ? 'Show Details' : 'Hide Details'
+                    this.state.visibility ? 'Hide Details' : 'Show Details'
                 ),
                 React.createElement(
                     'div',
                     null,
-                    !this.state.visibility ? 'These are some details press button to hide' : ''
+                    this.state.visibility ? 'These are some details press button to hide' : ''
                 )
             );
         }
@@ -63,6 +63,10 @@ var VisibilityToggle = function (_React$Component) {
 }(React.Component);
 
 ReactDOM.render(React.createElement(VisibilityToggle, null), root);
+
+// we can also use the former expression:
+// {this.state.visibility && (<div><p>These are some detials</p></div>s)}
+
 
 // let visibility = false;
 
