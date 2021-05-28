@@ -2,9 +2,23 @@
 class IndecisionApp extends React.Component{
     constructor(props){
         super(props);
+        this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+        this.handleActions = this.handleActions.bind(this);
         this.state = {
             options: ['Thing One', 'Thing Two', 'Thing five']
         };
+    }
+    handleDeleteOptions(){
+        this.setState(()=> {
+            return{
+                options: []
+            }
+        })
+    }
+    handleActions(){
+        const randomNum = Math.floor(Math.random()* this.state.options.length)
+        const option = this.state.options[randomNum];
+        alert(option)
     }
     render(){
         const title = 'Indecision';
@@ -13,8 +27,14 @@ class IndecisionApp extends React.Component{
         return(
             <div>
                 <Header title={title} subtitle={subtitle}/>
-                <Action hasOptions={this.state.options.length>0}/>
-                <Options options={this.state.options}/>
+                <Action 
+                hasOptions={this.state.options.length>0}
+                handleActions={this.handleActions}
+                />
+                <Options 
+                options={this.state.options}
+                handleDeleteOptions={this.handleDeleteOptions}
+                />
                 <AddOption />
             </div>
         );
@@ -34,33 +54,26 @@ class Header extends React.Component{
 
 }
 class Action extends React.Component{
-    handlePick(){
-        alert('Random choice is being made')
-    }
+
     render(){
         return(
             <div>
                 <button 
-                onClick={this.handlePick}
+                onClick={this.props.handleActions}
                 disabled={!this.props.hasOptions}>
                 What should I do?</button>
             </div>
         )
     }
 }
-
+//Components such as Options cannot change its own props // but new prop values can be passed down from the parent and that can trigger a re-render from the child
+//PROPS ARE READ-ONLY
 class Options extends React.Component{
-    constructor(props){
-        super(props);
-        this.handleRemoveAll = this.handleRemoveAll.bind(this);
-    }
-    handleRemoveAll(){
-        alert('Removing all options')
-    }
+    
     render(){
         return(
             <div>
-            <button onClick={this.handleRemoveAll}>Remove All</button>
+            <button onClick={this.props.handleDeleteOptions}>Remove All</button>
               {
                  this.props.options.map(option=> <Option key={option} optionText={option}/>)
               }
