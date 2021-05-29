@@ -10,11 +10,7 @@ class IndecisionApp extends React.Component{
         };
     }
     handleDeleteOptions(){
-        this.setState(()=> {
-            return{
-                options: []
-            }
-        })
+        this.setState(()=>  ({ options: [] }));
     }
     handleActions(){
         const randomNum = Math.floor(Math.random()* this.state.options.length)
@@ -28,12 +24,7 @@ class IndecisionApp extends React.Component{
             return 'This option already exists';
         }
 
-        this.setState((prevState)=> {
-            return{
-                //We use concat instead of push because we don't want to change the initial array 
-                options: prevState.options.concat(option)
-            }
-        })
+        this.setState((prevState)=> ({ options: prevState.options.concat(option)}))
 
     }
     render(){
@@ -170,10 +161,8 @@ class AddOption extends React.Component{
         const optionToAdd = e.target.elements.option.value.trim();
         const error = this.props.handleAddOption(optionToAdd)
         
-
-        this.setState(()=>{
-            return{ error }
-        })
+        //Implicitly returning an option - removing the return key
+        this.setState(()=>({ error }))
 
     }
     render(){
