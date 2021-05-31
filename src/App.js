@@ -17,7 +17,7 @@ class IndecisionApp extends React.Component{
         //We have acces to prevProps and prevState as arguments
     }
 
-    
+    //componentWillUnmount - usually for applications with more than one comoponent
     handleDeleteOptions(){
         this.setState(()=>  ({ options: [] }));
     }

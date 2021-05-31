@@ -34,9 +34,12 @@ var IndecisionApp = function (_React$Component) {
         }
     }, {
         key: 'componentDidUpdate',
-        value: function componentDidUpdate() {
-            //We have acces to prevProps and prevState as arguments
-        }
+        value: function componentDidUpdate() {}
+        //We have acces to prevProps and prevState as arguments
+
+
+        //componentWillUnmount - usually for applications with more than one comoponent
+
     }, {
         key: 'handleDeleteOptions',
         value: function handleDeleteOptions() {
