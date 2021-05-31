@@ -10,6 +10,14 @@ class IndecisionApp extends React.Component{
             options: []
         };
     }
+    componentDidMount(){
+        // Lifecyicle methods for class components
+    }
+    componentDidUpdate(){
+        //We have acces to prevProps and prevState as arguments
+    }
+
+    
     handleDeleteOptions(){
         this.setState(()=>  ({ options: [] }));
     }
@@ -48,6 +56,7 @@ class IndecisionApp extends React.Component{
                 <Options 
                 options={this.state.options}
                 handleDeleteOptions={this.handleDeleteOptions}
+                
                 handleDeleteOption={this.handleDeleteOption}
                 />
                 <AddOption

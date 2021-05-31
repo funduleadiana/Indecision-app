@@ -28,6 +28,16 @@ var IndecisionApp = function (_React$Component) {
     }
 
     _createClass(IndecisionApp, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            // Lifecyicle methods for class components
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            //We have acces to prevProps and prevState as arguments
+        }
+    }, {
         key: 'handleDeleteOptions',
         value: function handleDeleteOptions() {
             this.setState(function () {
@@ -82,6 +92,7 @@ var IndecisionApp = function (_React$Component) {
                 React.createElement(Options, {
                     options: this.state.options,
                     handleDeleteOptions: this.handleDeleteOptions,
+
                     handleDeleteOption: this.handleDeleteOption
                 }),
                 React.createElement(AddOption, {
