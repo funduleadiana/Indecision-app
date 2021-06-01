@@ -11,13 +11,27 @@ class IndecisionApp extends React.Component{
         };
     }
     componentDidMount(){
+        try{
         // Lifecyicle methods for class components
+        //fetching data
+        const json = localStorage.getItem('options');
+        const options = JSON.parse(json);
+        if(options){
+            this.setState(()=> ({options: options}))
+            }
+        }catch(e){
+
+        }
     }
-    componentDidUpdate(){
+    componentDidUpdate(prevProps, prevState){
         //We have acces to prevProps and prevState as arguments
+        //updating data
+        if(prevState.options.length !== this.state.options.length){
+            const json = JSON.stringify(this.state.options);
+            localStorage.setItem('options', json);
+        }
     }
 
-    //componentWillUnmount - usually for applications with more than one comoponent
     handleDeleteOptions(){
         this.setState(()=>  ({ options: [] }));
     }
@@ -34,12 +48,13 @@ class IndecisionApp extends React.Component{
     }
     handleAddOption(option){
         if(!option){
-            return 'Enter valid value to add item'
+            return 'Enter valid value to add item';
         }else if(this.state.options.indexOf(option) > -1){
             return 'This option already exists';
         }
 
-        this.setState((prevState)=> ({ options: prevState.options.concat(option)}))
+        this.setState((prevState)=> ({ 
+            options: prevState.options.concat(option)}))
 
     }
     render(){
@@ -50,7 +65,7 @@ class IndecisionApp extends React.Component{
             <div>
                 <Header title={title} subtitle={subtitle}/>
                 <Action 
-                hasOptions={this.state.options.length>0}
+                hasOptions={this.state.options.length > 0}
                 handleActions={this.handleActions}
                 />
                 <Options 
@@ -76,18 +91,6 @@ const Header = (props)=>{
 }
 
 
-// class Header extends React.Component{
-//     render(){
-//         return( 
-//             <div>
-//                 <h1>{this.props.title}</h1>
-//                 <h2>{this.props.subtitle}</h2>
-//             </div>
-//         )
-//     }
-
-// }
-
 const Action = (props) => {
     return(
         <div>
@@ -99,22 +102,6 @@ const Action = (props) => {
         </div>
     )
 }
-// class Action extends React.Component{
-
-//     render(){
-//         return(
-//             <div>
-//                 <button 
-//                 onClick={this.props.handleActions}
-//                 disabled={!this.props.hasOptions}>
-//                 What should I do?</button>
-//             </div>
-//         )
-//     }
-// }
-//Components such as Options cannot change its own props // but new prop values can be passed down from the parent and that can trigger a re-render from the child
-//PROPS ARE READ-ONLY
-
 const Options = (props) => {
     return(
         <div>
@@ -131,21 +118,6 @@ const Options = (props) => {
 
     );
 }
-// class Options extends React.Component{
-    
-//     render(){
-//         return(
-//             <div>
-//             <button onClick={this.props.handleDeleteOptions}>Remove All</button>
-//               {
-//                  this.props.options.map(option=> <Option key={option} optionText={option}/>)
-//               }
-//             </div>
-
-//         );
-//     }
-// }
-
 
 const Option = (props) => {
     return(
@@ -156,17 +128,6 @@ const Option = (props) => {
         </div>
     )
 }
-// class Option extends React.Component{
-//     render(){
-//         return(
-//             <div>
-            
-//             {this.props.optionText}
-                
-//             </div>
-//         )
-//     }
-// }
 
 class AddOption extends React.Component{
     constructor(props){
