@@ -89,7 +89,9 @@ const Header = (props)=>{
         </div>
     )
 }
-
+//Header.defaultProps={
+ //   title: 'Indecision'
+//};
 
 const Action = (props) => {
     return(
