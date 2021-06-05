@@ -81,12 +81,13 @@ export default class IndecisionApp extends React.Component{
                         />
                         <AddOption
                         handleAddOption={this.handleAddOption} />
-                </div>
-                </div>
-                    <OptionModal
-                selectedOption={this.state.selectedOption}
-                handleCloseModal={this.handleCloseModal}
-                />
+                        </div>
+                        </div>
+                        <OptionModal
+                        selectedOption={this.state.selectedOption}
+                        handleCloseModal={this.handleCloseModal}
+                        ariaHideApp={false}
+                        />
             </div>
         );
     }
